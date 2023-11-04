@@ -80,10 +80,10 @@ function activateEditListeners() {
     const editBtn = document.querySelectorAll(".edit");
     const updateController = document.querySelectorAll(".update-controller");
     const inputs = document.querySelectorAll(".task-text");
-    editBtn.forEach((button, i) => {
-        button.addEventListener('click', (event) => {
-            updateController.style.display = "block";
-            editItem(i);
+    editBtn.forEach((ed, i) => {
+        ed.addEventListener('click', (event) => {
+            updateController[i].style.display = "block";
+            inputs[i].disabled = false;
         });
     });
 }
