@@ -4,6 +4,9 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
+.update-controller{
+    display: none;
+}
 
 #wrapper{
     text-align: center;
@@ -59,7 +62,6 @@ h2{
     border-radius: 20px;
     padding: 20px;
     width: 75%;
-    
 }
 
 
@@ -91,6 +93,23 @@ h2{
 
 .item{
     margin-bottom: 1em;
+}
+
+/* STYKING FOR THE TEXT AREAS */
+textarea {
+    border-radius: 1em;
+    resize: none;
+    width: 60%;
+    font-size: 1.2em;
+    padding-top: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    background: rgb(230, 161, 173);
+    border: none;
+    color: white;
+}
+.input-controller{
+    margin-bottom: 0.5em;
 }
 
 

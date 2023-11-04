@@ -18,6 +18,12 @@ addBtn.addEventListener('click', () => {
     const item = document.querySelector("#task-input");
     createItem(item);
 });
+const taskInput = document.querySelector("#task-input");
+taskInput.addEventListener('keypress', (event) => {
+    if(event.key === "Enter") {
+        createItem(taskInput);
+    };
+});
 
 
 //CREATING AND DISPLAYING TASKS
@@ -30,19 +36,45 @@ function createItem(item) {
 function displayItems() {
     let items = '';
     for(let i = 0; i < itemsArray.length; i++){
-     items +=   `<div class="item">
-                <div class="input-controller">
-                    <div class="edit-controller">
-                        <span class="done"></span>
-                        <span class="edit"></span>
-                        <span class="cancel"></span>
-                    </div>
-                    <textarea> ${itemsArray[i]} </textarea>
-        </div>`
+     items +=   `
+     <div class="item">
+         <div class="input-controller">
+            <textarea class="task-text"> ${itemsArray[i]} </textarea>
+             <div class="edit-controller">
+                 <span class="edit"></span>
+                 <span class="done"></span>
+                 <span class="cancel"></span>
+             </div>
+         </div>
+         <div class="update-controller">
+             <button class="saveBtn"> Save </button>
+             <button class="cancelBtn"> Cancel </button>
+
+         </div>
+     </div>`
     }
 
     const taskList = document.querySelector("#task-list");
-    taskList.innerHTML = items
+    taskList.innerHTML = items;
+    activateDeleteListeners();
+    activateEditListeners();
+    activateSaveListeners();
+    activateCancelListeners();
+}
+
+function activateDeleteListeners(){
+    const cancelBtn = document.querySelectorAll(".cancel");
+    cancelBtn.forEach((button, i) => {
+        button.addEventListener('click', (event )=> {
+            deleteItem(i);
+        });
+    });
+};
+
+function deleteItem(i) {
+    itemsArray.splice(i, 1);
+    localStorage.setItem("items", JSON.stringify(itemsArray));
+    location.reload();
 }
 
 
