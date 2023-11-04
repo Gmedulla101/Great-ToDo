@@ -41,8 +41,8 @@ function displayItems() {
          <div class="input-controller">
             <textarea class="task-text" disabled> ${itemsArray[i]} </textarea>
              <div class="edit-controller">
+                <span class="done"></span>
                  <span class="edit"></span>
-                 <span class="done"></span>
                  <span class="cancel"></span>
              </div>
          </div>
@@ -52,7 +52,7 @@ function displayItems() {
 
          </div>
      </div>`
-    }
+    };
 
     const taskList = document.querySelector("#task-list");
     taskList.innerHTML = items;
@@ -60,6 +60,7 @@ function displayItems() {
     activateEditListeners();
     activateSaveListeners();
     activateCancelListeners();
+    activateMarkedListeners();
 }
 
 function activateDeleteListeners(){
@@ -82,10 +83,51 @@ function activateEditListeners() {
     const inputs = document.querySelectorAll(".task-text");
     editBtn.forEach((ed, i) => {
         ed.addEventListener('click', (event) => {
-            updateController[i].style.display = "block";
+            updateController[i].style.display = "flex";
             inputs[i].disabled = false;
         });
     });
+}
+
+function activateSaveListeners() {
+    const saveBtn = document.querySelectorAll(".saveBtn");
+    const taskInputs = document.querySelectorAll(".task-text");
+    saveBtn.forEach((save, i) => {
+        save.addEventListener("click", (event) => {
+            updateInput(taskInputs[i].value, i)
+        })
+    })
+};
+function updateInput(text, i) {
+    itemsArray[i] = text;
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+    location.reload();
+};
+
+function activateCancelListeners() {
+    const cancelBtn = document.querySelectorAll('.cancelBtn');
+    const input = document.querySelectorAll(".task-text");
+    const updateController = document.querySelectorAll('.update-controller');
+    cancelBtn.forEach((cancel, i) => {
+        cancel.addEventListener('click', (event) => {
+            updateController[i].style.display = "none";
+            input[i].disabled = true;
+        })
+    })
+}
+
+function activateMarkedListeners() {
+    const doneBtn = document.querySelectorAll(".done");
+    const input = document.querySelectorAll('.task-text');
+    doneBtn.forEach((done, i) => {
+        done.addEventListener('click', (event) => {
+            if(input[i].style.textDecoration === "none") {
+                input[i].style.textDecoration = "line-through";
+            } else {
+                input[i].style.textDecoration = "none";
+            }
+        })
+    })
 }
 /* function editItem(i) {
     const tasks = document.querySelectorAll(".task-text");

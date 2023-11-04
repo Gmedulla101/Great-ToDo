@@ -6,6 +6,24 @@ body{
 }
 .update-controller{
     display: none;
+    justify-content: space-around;
+    padding: 0 4em;
+}
+.update-controller button{
+    border: none;
+    width: 20%;
+    height: 3em;
+    border-radius: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.update-controller button:nth-child(1){
+    background: rgb(60, 60, 149);
+    color: white;
+}
+.update-controller button:hover{
+    transform: scale(1.1);
 }
 
 #wrapper{
@@ -96,7 +114,7 @@ h2{
 }
 
 /* STYKING FOR THE TEXT AREAS */
-textarea {
+.task-text {
     border-radius: 1em;
     resize: none;
     width: 60%;
