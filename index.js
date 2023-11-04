@@ -12,12 +12,15 @@ function displayDate() {
     dateBar.innerHTML = date;
 }
 
+//JS FOR THE BUTTONS
 const addBtn = document.querySelector("#add-button");
 addBtn.addEventListener('click', () => {
     const item = document.querySelector("#task-input");
     createItem(item);
 });
 
+
+//CREATING AND DISPLAYING TASKS
 function createItem(item) {
     itemsArray.push(item.value);
     localStorage.setItem("items", JSON.stringify(itemsArray));
