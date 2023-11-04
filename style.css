@@ -1,0 +1,104 @@
+body{
+    background: rgb(230, 161, 173);
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+#wrapper{
+    text-align: center;
+    margin-top: 40px;
+}
+
+h1{
+    font-size: 50px;
+    margin: 20px;
+}
+
+h2{
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* THE MAIN BODY */
+
+#task-header #task-input{
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid black ;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#task-header #date{
+    display: block;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+#task-header #add-button{
+    background: gray;
+    padding: 20px;
+    border-radius: 12px;
+    color: pink;
+    border: 2px solid black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#task-header #add-button:active{
+    background: rgb(65, 64, 64);
+}
+
+#task-list{
+    list-style-type: none;
+    margin: 40px auto;
+    border: 3px solid white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 75%;
+    
+}
+
+
+/* CHECKMARKs */
+.edit, .done, .cancel{
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.edit{
+    background: rgb(225, 225, 42);
+}
+.done{
+    background: rgb(71, 171, 71);
+}
+.cancel{
+    background: rgb(242, 51, 51);
+}
+
+.item .input-controller{
+    display:flex;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.item{
+    margin-bottom: 1em;
+}
+
+
+/* SOME OF THE EFFECTS CLASSES */
+.marked{
+    text-decoration: line-through;
+}
+
+
+
+
