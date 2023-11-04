@@ -39,7 +39,7 @@ function displayItems() {
      items +=   `
      <div class="item">
          <div class="input-controller">
-            <textarea class="task-text"> ${itemsArray[i]} </textarea>
+            <textarea class="task-text" disabled> ${itemsArray[i]} </textarea>
              <div class="edit-controller">
                  <span class="edit"></span>
                  <span class="done"></span>
@@ -70,12 +70,37 @@ function activateDeleteListeners(){
         });
     });
 };
-
 function deleteItem(i) {
     itemsArray.splice(i, 1);
     localStorage.setItem("items", JSON.stringify(itemsArray));
     location.reload();
 }
+
+function activateEditListeners() {
+    const editBtn = document.querySelectorAll(".edit");
+    const updateController = document.querySelectorAll(".update-controller");
+    const inputs = document.querySelectorAll(".task-text");
+    editBtn.forEach((button, i) => {
+        button.addEventListener('click', (event) => {
+            updateController.style.display = "block";
+            editItem(i);
+        });
+    });
+}
+/* function editItem(i) {
+    const tasks = document.querySelectorAll(".task-text");
+    tasks.forEach((task) =>{
+        if ( task.disabled = true) {
+            task.disabled = false;
+            task.style.backgroundColor = "white";
+            task.style.color = "black";
+        } else if(task.disabled = false){
+            task.disabled;
+            task.style.backgroundColor = "rgb(230, 161, 173)";
+            task.style.color = "white";
+        }
+    })
+} */
 
 
 
