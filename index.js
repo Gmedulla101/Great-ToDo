@@ -85,6 +85,8 @@ function activateEditListeners() {
         ed.addEventListener('click', (event) => {
             updateController[i].style.display = "flex";
             inputs[i].disabled = false;
+            inputs[i].style.backgroundColor = "white";
+            inputs[i].style.color = "black";
         });
     });
 }
@@ -112,6 +114,8 @@ function activateCancelListeners() {
         cancel.addEventListener('click', (event) => {
             updateController[i].style.display = "none";
             input[i].disabled = true;
+            input[i].style.backgroundColor = "rgb(230, 161, 173)";
+            input[i].style.color = "white";
         })
     })
 }

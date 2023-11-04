@@ -86,8 +86,8 @@ h2{
 /* CHECKMARKs */
 .edit, .done, .cancel{
     display: inline-block;
-    width: 23px;
-    height: 23px;
+    width: 1.5em;
+    height: 1.5em;
     margin-right: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -130,10 +130,39 @@ h2{
     margin-bottom: 0.5em;
 }
 
+.HTU{
+    text-decoration: none;
+    padding: 1em;
+    background: white;
+    border-top-right-radius: 2em;
+    border-top-left-radius: 2em;
+    position: fixed;
+    top: 93%;
+    left: 68%;
+}
+
 
 /* SOME OF THE EFFECTS CLASSES */
 .marked{
     text-decoration: line-through;
+}
+
+/* MEDIA QUERY FOR MOBILE */
+@media screen and (max-width: 550px){
+    #task-list{
+        padding: 1em;
+        width: 90%;
+    }
+    .item textarea {
+        width: 70%;
+        font-size: 1em;
+    }
+    .edit-controller {
+        width: 30%;
+    }
+    .edit, .cancel, .done{
+        margin: 0;
+    }
 }
 
 
