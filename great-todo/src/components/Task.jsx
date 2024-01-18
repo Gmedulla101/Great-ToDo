@@ -1,19 +1,25 @@
-export default function Task({taskValue}) {
-    console.log(taskValue)
+export default function Task({taskData, isEditing, deleteTask, toggleComplete}) {
+    console.log(taskData);
+
+
     return (
-        <div class="item">
-            <div class="input-controller">
-               <textarea className="task-text">  </textarea>
-                <div class="edit-controller">
+        <div className="item">
+            <div className="input-controller">
+                
+               <textarea className= {`task-text ${taskData.isComplete ? 'completed' : ''}`} value={taskData.taskInput} disabled = {isEditing ? 'false' : 'true'}>  </textarea>
+
+                {/* EDIT CONTROLLER FOR TOGGLING TASK STATE */}
+                <div className="edit-controller">
                     <span className="edit"></span>
-                    <span className="done"></span>
-                    <span className="cancel"></span>
+                    <span className="done" onClick={() => {toggleComplete(taskData.id)}}></span>
+                    <span className="cancel" onClick={() => {deleteTask(taskData.id)}}></span>
                 </div>
             </div>
-            <div class="update-controller">
+
+            {/* UPDATE CONTROLLER FOR EDITN THE TASKS */}
+            <div className="update-controller">
                 <button className="saveBtn"> Save </button>
                 <button className="cancelBtn"> Cancel </button>
-
             </div>
         </div>
 

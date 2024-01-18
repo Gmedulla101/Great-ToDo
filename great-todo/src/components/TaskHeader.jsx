@@ -1,61 +1,78 @@
 import React from 'react';
 import Task from './Task.jsx';
+import TaskForm from './TaskForm.jsx';
+import dateStringArray from './Date.jsx';
+import {useState,useEffect} from 'react';
+
+
 
 export default function TaskHeader() {
-    const date = new Date();
-    const dateArray = date.toString().split(' ');
 
-    const [formData, setFormData] = React.useState({
-        taskInput : '',
-        name: '',
+    const [tasks, setTasks] = useState([])
 
-    })
-    function handleChange(event) {
-        const {name, type,value} = event.target
-        setFormData((prevState) => {
-            return(
-                {...prevState,
-                [name]: value}
-            )
+    function addTasks(task) {
+        setTasks((prevTasks) => {
+            return [
+                ...prevTasks,
+                {
+                    taskInput: task,
+                    id: prevTasks.length,
+                    isCompleted: false,
+                    isEditing: true
+                }
+            ]
         })
     }
-    const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
-   
 
-    function addItem() {
-        itemsArray.push(formData);
-        localStorage.setItem('items', JSON.stringify(itemsArray));
+    function deleteTask(id) {
+        setTasks(tasks.filter((task) => {
+            return task.id !== id
+        }))
     }
-    console.log(itemsArray);
 
-    const itemsEl = itemsArray.map((item) => {
-        return <Task taskValue = {item} />
+    function toggleComplete(id) {
+        setTasks(tasks.map((task) => {
+            if(task.id === id) {
+                return {
+                    ...task,
+                    isComplete: !task.isComplete
+                }
+            } else {
+                return task
+            }
+        }))
+    }
+
+
+  
+
+    console.log(tasks)
+
+    const tasksEl = tasks.map((task, i) => {
+        return <Task 
+        taskData = {task} 
+        key = {task.id} 
+        deleteTask={deleteTask} 
+        toggleComplete = {toggleComplete}
+        isEditing = {task.isEditing}
+        />
     })
-
-
-
-    return (
-    <>
-        <section id="task-header">
-            <h1> The Great To-Do</h1>
-            <h2>Let's get you organized!</h2>
-            <h1 id="date">
-            {dateArray[0]}, {dateArray[1]} {dateArray[2]} {dateArray[3]}
-            </h1>
-            <br />
-            <input 
-            type="text" 
-            placeholder="e.g. go to the gym" id="task-input"
-            name = 'taskInput'
-            onChange = {handleChange}
-            value={formData.taskIinput}
-            />
-            <button id="add-button" onClick={addItem}> ADD TASK</button>
-
-        </section>
-        <ul id="task-list">
-            {itemsEl}
-        </ul>
+ 
+    //COMPONENT JSX
+        return (
+        <>
+            <section id="task-header">
+                <h1> The Great To-Do</h1>
+                <h2>Let's get you organized!</h2>
+                <h1 id="date">
+                    {`${dateStringArray[0]}, ${dateStringArray[1]} ${dateStringArray[2]} ${dateStringArray[3]}`}
+                </h1>
+                <br />
+                <TaskForm addTasks = {addTasks} />
+            </section>
+            <ul id="task-list">
+               {tasksEl}
+            </ul>
         </>
     )
 }
